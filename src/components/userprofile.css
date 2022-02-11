@@ -1,0 +1,22 @@
+.name {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.email {
+  font-size: 10px;
+}
+
+table {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 1em;
+}
+
+.flex-column {
+  line-height: 13px;
+}
+.avatar {
+  margin-top: -5px;
+  margin-right: 5px;
+}
