@@ -16,7 +16,7 @@ function MainCard(props) {
               </tr>
             </thead>
             <tbody>
-              <UserProfile />
+              <UserProfile isOwner={true} />
               <UserProfile />
               <UserProfile />
               <UserProfile />

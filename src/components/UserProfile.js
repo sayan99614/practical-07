@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "react-avatar";
 import "./userprofile.css";
-function UserProfile(props) {
+function UserProfile({ isOwner }) {
   return (
     <tr>
       <th>
@@ -15,13 +15,29 @@ function UserProfile(props) {
           </div>
           <div className="d-flex flex-column">
             <div className="name">George Bluth</div>
-            <div className="email">george.bluth@reqres.in</div>
+            <div className="email text-secondary">george.bluth@reqres.in</div>
           </div>
         </div>
       </th>
-      <td>Active</td>
-      <td>Owner</td>
-      <td>🥇 </td>
+      <td>
+        <select className="form-select w-75 form-control-sm" id="example1">
+          <option>1</option>
+          <option>2</option>
+        </select>
+      </td>
+      <td>
+        <select className="form-select w-75 form-control-sm">
+          <option>1</option>
+          <option>2</option>
+        </select>
+      </td>
+      <td>
+        {isOwner ? (
+          <i class="fa-solid fa-lock fa-lg text-secondary" />
+        ) : (
+          <i class="fa-solid fa-trash-can fa-lg text-secondary"></i>
+        )}
+      </td>
     </tr>
   );
 }
