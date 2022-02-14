@@ -10,3 +10,10 @@
 .padding-table-columns td th {
   padding: 0px 0px 0px 80px;
 }
+
+.hovercard {
+  position: absolute;
+  width: 250px;
+  right: -70px;
+  border-radius: 25px;
+}
