@@ -1,6 +1,6 @@
 const initialState = {
   loading: false,
-  data: [],
+  data: {},
   error: "",
 };
 
@@ -22,7 +22,7 @@ export const fetchReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        data: [],
+        data: {},
         error: action.payload,
       };
     default:

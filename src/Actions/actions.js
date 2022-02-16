@@ -1,3 +1,4 @@
+import axios from "axios";
 export function showCard(data) {
   return {
     type: "SHOWCARD",
@@ -43,15 +44,29 @@ export function fetchUserRequest() {
   };
 }
 
-export function fetchUserSuccess(data) {
+export function fetchUserSuccess(obj) {
   return {
     type: "FETCH_USER_SUCCESS",
-    payload: data,
+    payload: obj,
   };
 }
 
 export function fetchUserError(err) {
   return {
     type: "FETCH_USER_ERROR",
+    payload: err,
+  };
+}
+
+export function fetchUsers() {
+  return function (dispatch) {
+    dispatch(fetchUserRequest());
+    axios
+      .get("https://reqres.in/api/users?page=1")
+      .then((response) => {
+        const user = response.data;
+        dispatch(fetchUserSuccess(user));
+      })
+      .catch((error) => dispatch(fetchUserError(error)));
   };
 }

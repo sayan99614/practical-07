@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
 import "./maincard.css";
 import UserProfile from "./UserProfile";
 import Avatar from "react-avatar";
 import { Line } from "rc-progress";
-import { useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchUsers } from "../Actions/actions";
 function MainCard(props) {
-  const { card } = useSelector((state) => state.showReducer);
-  const { user } = useSelector((state) => state.userReducer);
-  const data = useSelector((state) => state.listReducer);
+  const { card, user, data } = props;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
   return (
     <div className="row">
       <div className="col-sm-8 offset-sm-2">
@@ -78,4 +81,16 @@ function MainCard(props) {
   );
 }
 
-export default MainCard;
+function mapStateToProps(state) {
+  console.log(state);
+  const { card } = state.showReducer;
+  const { user } = state.userReducer;
+
+  return {
+    card,
+    user,
+    data: state.listReducer,
+  };
+}
+
+export default connect(mapStateToProps)(MainCard);
