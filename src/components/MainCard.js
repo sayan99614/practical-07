@@ -5,8 +5,9 @@ import { Line } from "rc-progress";
 import { connect, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchUsers } from "../Actions/actions";
+import { SpinnerInfinity } from "spinners-react";
 function MainCard(props) {
-  const { card, user, data } = props;
+  const { card, user, data, loading, error } = props;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUsers());
@@ -15,31 +16,44 @@ function MainCard(props) {
     <div className="row">
       <div className="col-sm-8 offset-sm-2">
         <div className="card card-body shadow-sm p-3 mb-5 mt-5 maincard">
-          <table className="table table-borderless padding-table-columns">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Status</th>
-                <th scope="col">Access</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item) => {
-                return (
-                  <UserProfile
-                    isOwner={item.id === 1 ? true : false}
-                    key={item.id}
-                    first_name={item.first_name}
-                    email={item.email}
-                    last_name={item.last_name}
-                    avatar={item.avatar}
-                    id={item.id}
-                  />
-                );
-              })}
-            </tbody>
-          </table>
+          {loading || !data ? (
+            <SpinnerInfinity
+              size={90}
+              thickness={155}
+              speed={100}
+              color="#36ad47"
+              secondaryColor="rgba(0, 0, 0, 0.44)"
+            />
+          ) : error ? (
+            <h1 className="text-danger">{error}</h1>
+          ) : (
+            <table className="table table-borderless padding-table-columns">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Access</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item) => {
+                  console.log(item.avatar);
+                  return (
+                    <UserProfile
+                      isOwner={item.id === 1 ? true : false}
+                      key={item.id}
+                      first_name={item.first_name}
+                      email={item.email}
+                      last_name={item.last_name}
+                      avatar={item.avatar}
+                      id={item.id}
+                    />
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
 
           {card && user && (
             <div className="card shadow-lg p-3 hovercard usercard">
@@ -82,14 +96,17 @@ function MainCard(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   const { card } = state.showReducer;
   const { user } = state.userReducer;
-
+  const { loading } = state.users;
+  const { error } = state.users;
+  const data = state.users.list.data;
   return {
     card,
     user,
-    data: state.listReducer,
+    data,
+    loading,
+    error,
   };
 }
 

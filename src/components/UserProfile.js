@@ -10,7 +10,7 @@ import {
 } from "../Actions/actions";
 
 function UserProfile({ isOwner, email, first_name, last_name, avatar, id }) {
-  const data = useSelector((state) => state.listReducer);
+  const data = useSelector((state) => state.users.list.data);
   const dispatch = useDispatch();
   function mouseEnter(id) {
     const user = data.find((item) => item.id === id);

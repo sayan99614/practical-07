@@ -62,7 +62,7 @@ export function fetchUsers() {
   return function (dispatch) {
     dispatch(fetchUserRequest());
     axios
-      .get("https://reqres.in/api/users?page=1")
+      .get("https://reqres.in/api/users?page=2")
       .then((response) => {
         const user = response.data;
         dispatch(fetchUserSuccess(user));
