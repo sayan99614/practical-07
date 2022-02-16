@@ -4,7 +4,7 @@ import Avatar from "react-avatar";
 import { Line } from "rc-progress";
 import { connect, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { fetchUsers } from "../Actions/actions";
+import { fetchUsers, setList } from "../Actions/actions";
 import { SpinnerInfinity } from "spinners-react";
 function MainCard(props) {
   const { card, user, data, loading, error } = props;
@@ -100,7 +100,7 @@ function mapStateToProps(state) {
   const { user } = state.userReducer;
   const { loading } = state.users;
   const { error } = state.users;
-  const data = state.users.list.data;
+  const data = state.listReducer;
   return {
     card,
     user,

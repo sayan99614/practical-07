@@ -66,6 +66,7 @@ export function fetchUsers() {
       .then((response) => {
         const user = response.data;
         dispatch(fetchUserSuccess(user));
+        dispatch(setList(user.data));
       })
       .catch((error) => dispatch(fetchUserError(error)));
   };
