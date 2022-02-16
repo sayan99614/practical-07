@@ -26,3 +26,6 @@ table {
   height: 25px;
   border: none;
 }
+.pointer {
+  cursor: pointer;
+}
