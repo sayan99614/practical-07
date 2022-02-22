@@ -5,7 +5,8 @@ import { Line } from "rc-progress";
 import { connect, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchUsers, setList } from "../Actions/actions";
-import { SpinnerInfinity } from "spinners-react";
+import { SpinnerCircularFixed } from "spinners-react";
+import Pagination from "./Pagination";
 function MainCard(props) {
   const { card, user, data, loading, error } = props;
   const dispatch = useDispatch();
@@ -17,12 +18,12 @@ function MainCard(props) {
       <div className="col-sm-8 offset-sm-2">
         <div className="card card-body shadow-sm p-3 mb-5 mt-5 maincard">
           {loading || !data ? (
-            <SpinnerInfinity
+            <SpinnerCircularFixed
               size={90}
-              thickness={155}
-              speed={100}
+              thickness={111}
+              speed={173}
               color="#36ad47"
-              secondaryColor="rgba(0, 0, 0, 0.44)"
+              secondaryColor="rgba(172, 57, 57, 0)"
             />
           ) : error ? (
             <h1 className="text-danger">{error}</h1>
@@ -89,6 +90,7 @@ function MainCard(props) {
               </div>
             </div>
           )}
+          <Pagination page={props.page} total_pages={props.total_pages} />
         </div>
       </div>
     </div>
@@ -100,6 +102,7 @@ function mapStateToProps(state) {
   const { user } = state.userReducer;
   const { loading } = state.users;
   const { error } = state.users;
+  const { page, total_pages } = state.users.list;
   const data = state.listReducer;
   return {
     card,
@@ -107,6 +110,8 @@ function mapStateToProps(state) {
     data,
     loading,
     error,
+    page,
+    total_pages,
   };
 }
 

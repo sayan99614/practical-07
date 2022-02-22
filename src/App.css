@@ -8,3 +8,10 @@ body {
   background-color: #dce0e9;
   overflow-x: hidden;
 }
+
+.pgn {
+  border-radius: 50%;
+  width: 37px;
+  border: none;
+  opacity: 0.9;
+}

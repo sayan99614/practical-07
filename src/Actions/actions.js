@@ -58,11 +58,11 @@ export function fetchUserError(err) {
   };
 }
 
-export function fetchUsers() {
+export function fetchUsers(pagenumber) {
   return function (dispatch) {
     dispatch(fetchUserRequest());
     axios
-      .get("https://reqres.in/api/users?page=2")
+      .get(`https://reqres.in/api/users?page=${pagenumber ? pagenumber : 1}`)
       .then((response) => {
         const user = response.data;
         dispatch(fetchUserSuccess(user));
