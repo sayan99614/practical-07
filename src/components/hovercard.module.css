@@ -1,0 +1,10 @@
+.hovercard {
+  position: absolute;
+  width: 250px;
+  right: -70px;
+  border-radius: 25px;
+}
+
+.top-0 {
+  top: 0;
+}

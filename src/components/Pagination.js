@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { fetchUsers } from "../Actions/actions";
 
 function Pagination({ page, total_pages }) {
-  console.log(page, total_pages);
   let pageNumbers = [];
 
   for (let i = 1; i <= total_pages; i++) {

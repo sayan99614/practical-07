@@ -1,7 +1,10 @@
 import React, { useMemo } from "react";
 import Avatar from "react-avatar";
 import { Line } from "rc-progress";
+import styles from "./hovercard.module.css";
+import { useSelector } from "react-redux";
 function HovreCard({ user }) {
+  let len = useSelector((state) => state.listReducer.length);
   let usage = [35, 45, 65, 55, 75, 89];
   let clicks = [2500, 3000, 3500, 4000, 5000];
   let monthlyClicks = [5000, 6000, 7000, 8000, 9000, 10000];
@@ -13,7 +16,11 @@ function HovreCard({ user }) {
     };
   }, []);
   return (
-    <div className="card shadow-lg p-3 hovercard usercard">
+    <div
+      className={`card shadow-lg p-3 ${styles.hovercard} ${
+        len <= 2 ? styles["top-0"] : ``
+      } usercard`}
+    >
       <div className="text-center">
         <Avatar round size="100" src={user.avatar} />
         <h6 className="mt-2">{`${user.first_name} ${user.last_name}`}</h6>

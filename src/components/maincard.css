@@ -23,12 +23,6 @@
   padding: 0px 0px 0px 80px;
 }
 
-.hovercard {
-  position: absolute;
-  width: 250px;
-  right: -70px;
-  border-radius: 25px;
-}
 .btn-warning {
   background-color: rgb(254, 178, 63);
   font-weight: 600;

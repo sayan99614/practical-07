@@ -38,7 +38,6 @@ function MainCard(props) {
               </thead>
               <tbody>
                 {data.map((item) => {
-                  console.log(item.avatar);
                   return (
                     <UserProfile
                       isOwner={item.id === 1 ? true : false}
