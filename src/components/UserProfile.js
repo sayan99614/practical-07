@@ -8,7 +8,7 @@ import {
   removeUser,
   deleteUser,
 } from "../Actions/actions";
-
+import { useMemo } from "react";
 function UserProfile({ isOwner, email, first_name, last_name, avatar, id }) {
   const data = useSelector((state) => state.listReducer);
   const dispatch = useDispatch();
@@ -17,12 +17,14 @@ function UserProfile({ isOwner, email, first_name, last_name, avatar, id }) {
     dispatch(setUser(user));
     dispatch(showCard(true));
   }
-
   function mouseOut() {
     dispatch(removeUser());
     dispatch(hideCard(false));
   }
-
+  let access = ["Manager", "Read", "View"];
+  const accessType = useMemo(() => {
+    return access[Math.floor(Math.random() * access.length)];
+  }, []);
   return (
     <tr>
       <th>
@@ -46,7 +48,6 @@ function UserProfile({ isOwner, email, first_name, last_name, avatar, id }) {
         ) : (
           <select className="form-select form-control-sm">
             <option>Inactive</option>
-            <option>Active</option>
           </select>
         )}
       </td>
@@ -55,8 +56,7 @@ function UserProfile({ isOwner, email, first_name, last_name, avatar, id }) {
           <p className="text-secondary">Owner</p>
         ) : (
           <select className="form-select form-control-sm">
-            <option>Read</option>
-            <option>Write</option>
+            <option>{accessType}</option>
           </select>
         )}
       </td>

@@ -15,7 +15,7 @@ function MainCard(props) {
   return (
     <div className="row">
       <div className="col-sm-8 offset-sm-2">
-        <div className="card card-body shadow-sm p-3 mb-5 mt-5 maincard">
+        <div className="card card-body shadow-sm p-3 my-3 maincard">
           {loading || !data ? (
             <SpinnerCircularFixed
               size={90}
